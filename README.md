@@ -5,3 +5,6 @@
 2. Use 'node app' to run the application
 
 3. The application should automatically boot up on localhost:3000
+
+4. npm install jsonwebtoken
+
