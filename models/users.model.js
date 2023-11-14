@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -26,5 +28,10 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+// Method to generate a JWT token
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign({ _id: this._id }, 'secretkey');
+  return token;
+};
 
 module.exports = mongoose.model('User', userSchema);
