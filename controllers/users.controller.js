@@ -96,6 +96,10 @@ router.post('/auth/signin', async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // test (print email and password to terminal to double check)
+    console.log('Received email:', email);
+    console.log('Received password:', password);
+
     // Find the user by email
     const user = await User.findOne({ email });
 
@@ -105,8 +109,10 @@ router.post('/auth/signin', async (req, res) => {
     }
 
     // generate authentication token here in future
-
-    res.json({ message: 'Sign-in successful' });
+    const token = user.generateAuthToken();
+    
+    // Return success message
+   res.json({ message: 'Sign-in successful', token });
   } catch (error) {
     console.error('Error signing in:', error);
     res.status(500).json({ error: 'Internal Server Error' });
