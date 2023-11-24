@@ -7,4 +7,6 @@
 3. The application should automatically boot up on localhost:3000
 
 4. npm install jsonwebtoken
-
+cd frontEnd
+6. npm install
+7. npm run dev
