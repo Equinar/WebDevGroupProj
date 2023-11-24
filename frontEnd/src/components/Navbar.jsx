@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Fragment } from 'react';
-import { Disclosure, Transition } from '@headlessui/react';
+import { Disclosure } from '@headlessui/react';
 
 import logo from '../assets/logo.jpg';
 
@@ -21,7 +21,7 @@ function Navbar() {
     return (
         <>
             <Disclosure as="nav" className="bg-gray-800">
-                {({ open }) => (
+                {() => (
                     <>
                         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                             <div className="relative flex h-16 items-center justify-between">
