@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from "./components/Login.jsx";
 import Products from './components/Products.jsx';
 import Signup from "./components/Signup.jsx";
+import Home from './components/Home.jsx';
+
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -23,7 +25,7 @@ function App() {
                         isAuthenticated ? (
                             <Products />
                         ) : (
-                            <Login onLogin={handleLogin} />
+                            <Home />
                         )
                     }
                 />
