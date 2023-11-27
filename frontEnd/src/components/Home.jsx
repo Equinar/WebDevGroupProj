@@ -1,9 +1,10 @@
 import React from 'react';
+import Image from '../assets/bannerHome.jpg'
 import '../styles/home.css'
 const Home = () => {
   return (
     <div>
-      <img className="bannerImage" src="https://unsplash.it/1440/350?random" alt="https://unsplash.it/1440/325?random" />
+      <img className="bannerImage" src= {Image} alt="Black Friday Deals Banner" />
       <div className="bannerText">
         <p>Check out our brand new <b>Black Friday</b> Deals</p>
         <h1><a href='/products'>&gt;</a></h1>
