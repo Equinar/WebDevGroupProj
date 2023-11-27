@@ -20,7 +20,7 @@ function Navbar() {
     };
 
     const handleGoHome = () => {
-        // Navigate to the Signup page
+        // Navigate to the Home page
         navigateHome('/');
     };
 
