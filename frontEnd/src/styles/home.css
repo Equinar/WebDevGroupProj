@@ -1,0 +1,37 @@
+.bannerImage {
+    width: 80%;
+    height: auto;
+    max-height: 400px;
+    margin: 0 auto;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    margin-top: 3rem;
+  }
+  .bannerText {
+    width: 80%;
+    height: auto; 
+    max-height: 400px; 
+    margin: 0 auto;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: #1f2937;
+    color:#ffffff;
+    padding: 0.5rem;
+    display:flex;
+    justify-content: space-between;
+  }
+.bannerText > div {
+    width: 48%
+}
+
+.welcome {
+  width: 40%;
+  text-align: center;
+  height: auto; 
+  max-height: 400px; 
+  margin: 0 auto;
+  margin-top: 6rem;
+  background-color: rgba(31, 41, 55,0.8);
+  color:#ffffff;
+  padding: 0.5rem;
+}

@@ -8,6 +8,7 @@ import logo from '../assets/logo.jpg';
 function Navbar() {
     const navigateSignup = useNavigate();
     const navigateLogin = useNavigate();
+    const navigateHome = useNavigate();
 
     const handleSignUp = () => {
         // Navigate to the Signup page
@@ -18,6 +19,11 @@ function Navbar() {
         navigateLogin('/login');
     };
 
+    const handleGoHome = () => {
+        // Navigate to the Signup page
+        navigateHome('/');
+    };
+
     return (
         <>
             <Disclosure as="nav" className="bg-gray-800">
@@ -26,19 +32,17 @@ function Navbar() {
                         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                             <div className="relative flex h-16 items-center justify-between">
 
-                                <div className="flex flex-shrink-0 items-center">
+                                <div className="flex flex-shrink-0 items-center" onClick={handleGoHome}>
                                     <img
-                                        className="h-8 w-auto"
+                                        className="h-8 w-auto cursor-pointer"
                                         src={logo}
                                         alt="Brogrammers"
                                     />
-                                    <h3 className="mx-4 text-gray-300">Brogrammers</h3>
-
+                                    <h3 className="mx-4 text-gray-300 cursor-pointer">Brogrammers</h3>
                                 </div>
 
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
-                                        {/* ... Existing code for navigation links */}
                                     </div>
                                 </div>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
