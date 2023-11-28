@@ -5,6 +5,9 @@ import Login from "./components/Login.jsx";
 import Products from './components/Products.jsx';
 import Signup from "./components/Signup.jsx";
 import Home from './components/Home.jsx';
+import AllShops from './components/AllShops.jsx';
+import Cart from './components/Cart.jsx';
+
 
 
 function App() {
@@ -32,6 +35,9 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/allshops" element={<AllShops />} />
+                <Route path="/cart" element={<Cart />} />
+
             </Routes>
         </Router>
     );
