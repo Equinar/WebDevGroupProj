@@ -83,14 +83,7 @@ function Navbar() {
                                     </div>
                                 </div>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-                                    <button
-                                        type="button"
-                                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
-                                        onClick={handleSignIn}
-                                    >
-                                        Sign In
-                                    </button>
+                                    
                                     {/* Add signup button */}
                                     <button
                                         type="button"
@@ -99,6 +92,15 @@ function Navbar() {
                                     >
                                         Sign Up
                                     </button>
+
+                                    <button
+                                        type="button"
+                                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                                        onClick={handleSignIn}
+                                    >
+                                        Sign In
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
