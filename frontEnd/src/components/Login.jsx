@@ -1,16 +1,13 @@
-import logo from '../assets/logo.jpg'
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import logo from '../assets/logo.jpg';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-
-
-function Login() {
-
+function Login({ handleLogin, setIsAuthenticated }) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = async (e) => {
+    const handleSignIn = async (e) => {
         e.preventDefault();
         try {
             // Send a POST request to the server
@@ -24,19 +21,16 @@ function Login() {
 
             // Check if the request was successful (status code 200)
             if (response.ok) {
-                // Parse the JSON response
-                const data = await response.json();
-                console.log('Sign-in successful:', data);
-                navigate('/products')
-
-                // Perform any actions you need after successful login
+                // Call the handleLogin function passed from props
+                handleLogin();
+                setIsAuthenticated(true); // Update the authentication state
+                navigate('/products');
             } else {
                 // If the request was not successful, handle the error
                 const errorData = await response.json();
                 console.error('Authentication failed:', errorData);
 
                 // Display an error message to the user
-                // (You might want to do this in a more user-friendly way)
                 alert('Authentication failed. Invalid email or password.');
             }
         } catch (error) {
@@ -59,7 +53,7 @@ function Login() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" onSubmit={handleLogin}>
+                    <form className="space-y-6" onSubmit={handleSignIn}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                 Email address
@@ -78,12 +72,9 @@ function Login() {
                         </div>
 
                         <div>
-                            <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Password
-                                </label>
-
-                            </div>
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                                Password
+                            </label>
                             <div className="mt-2">
                                 <input
                                     id="password"
@@ -109,7 +100,7 @@ function Login() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default Login
+export default Login;
