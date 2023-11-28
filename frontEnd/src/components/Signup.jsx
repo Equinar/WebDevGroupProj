@@ -28,14 +28,13 @@ function Signup() {
                 console.log('Sign-up successful:', data);
 
                 // Redirect to the login page after successful sign-up
-                navigate('/products');
+                navigate('/login');
             } else {
                 // If the request was not successful, handle the error
                 const errorData = await response.json();
                 console.error('Sign-up failed:', errorData);
 
                 // Display an error message to the user
-                // (You might want to do this in a more user-friendly way)
                 alert('Sign-up failed. Please try again.');
             }
         } catch (error) {
