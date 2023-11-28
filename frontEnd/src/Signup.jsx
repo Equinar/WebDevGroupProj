@@ -35,7 +35,6 @@ function Signup() {
                 console.error('Sign-up failed:', errorData);
 
                 // Display an error message to the user
-                // (You might want to do this in a more user-friendly way)
                 alert('Sign-up failed. Please try again.');
             }
         } catch (error) {
