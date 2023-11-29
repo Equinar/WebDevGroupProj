@@ -28,7 +28,7 @@ function Signup() {
                 console.log('Sign-up successful:', data);
 
                 // Redirect to the login page after successful sign-up
-                navigate('/products');
+                navigate('/');
             } else {
                 // If the request was not successful, handle the error
                 const errorData = await response.json();

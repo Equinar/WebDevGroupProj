@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 
 
 
-function Login() {
+function Login({ onLogin }) {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -24,10 +24,11 @@ function Login() {
 
             // Check if the request was successful (status code 200)
             if (response.ok) {
+                onLogin(); // Update isAuthenticated state in App
                 // Parse the JSON response
                 const data = await response.json();
                 console.log('Sign-in successful:', data);
-                navigate('/products')
+                navigate('/')
 
                 // Perform any actions you need after successful login
             } else {

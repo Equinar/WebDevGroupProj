@@ -18,9 +18,18 @@ function App() {
         setIsAuthenticated(true);
     };
 
+    const handleLogout = () => {
+        // Clear authentication tokens or user info from local storage if any
+        localStorage.removeItem('token');
+        
+        // Update the isAuthenticated state
+        setIsAuthenticated(false);
+    };
+
+
     return (
         <Router>
-            <Navbar/>
+            <Navbar isAuthenticated={isAuthenticated}  onLogout={handleLogout}/>
             <Routes>
                 <Route
                     path="/"
@@ -32,7 +41,7 @@ function App() {
                         )
                     }
                 />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login onLogin={handleLogin} />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/allshops" element={<AllShops />} />

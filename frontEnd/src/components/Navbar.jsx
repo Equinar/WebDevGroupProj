@@ -6,7 +6,7 @@ import { Disclosure } from '@headlessui/react';
 import logo from '../assets/logo.jpg';
 import cart from '../assets/cart.png';
 
-function Navbar() {
+function Navbar({ isAuthenticated, onLogout }) {
     const navigateSignup = useNavigate();
     const navigateLogin = useNavigate();
     const navigateHome = useNavigate();
@@ -33,6 +33,12 @@ function Navbar() {
         // Navigate to the All Shops page
         navigateCart('/Cart');
     };
+    const handleLogout = () => {
+        onLogout();
+        localStorage.removeItem('token');
+        navigateLogin('/login');
+    };
+
     return (
         <>
             <Disclosure as="nav" className="bg-gray-800">
@@ -52,7 +58,7 @@ function Navbar() {
                                         alt="Brogrammers"
                                     />
                                     <h3 className="mx-4 text-gray-300 cursor-pointer" onClick={handleGoHome}>Brogrammers</h3>
-                                    
+
                                     {/* All shops button */}
 
                                     <button
@@ -83,26 +89,29 @@ function Navbar() {
                                     </div>
                                 </div>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                    
-                                    {/* Add signup button */}
-                                    <button
-                                        type="button"
-                                        className="ml-4 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
-                                        onClick={handleSignUp}
-                                    >
-                                        Sign Up
-                                    </button>
 
-                                    <button
-                                        type="button"
-                                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
-                                        onClick={handleSignIn}
-                                    >
-                                        Sign In
-                                    </button>
-
+                                    {isAuthenticated ? (
+                                        <>
+                                            <button type="button"
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none" 
+                                                onClick={() => navigate('/profile')}>My Profile</button>
+                                            <button type="button"
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none" 
+                                                onClick={handleLogout}>Sign Out</button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <button type="button"
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                                                onClick={handleSignUp} >Sign Up</button>
+                                            <button type="button"
+                                                className="ml-4 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                                                onClick={handleSignIn} >Sign In</button>
+                                        </>
+                                    )}
                                 </div>
                             </div>
+
                         </div>
 
                         {/* ... Remaining code for mobile menu and navigation links */}
