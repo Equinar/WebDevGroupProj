@@ -10,7 +10,7 @@ function Login({ onLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = async (e) => {
+    const handleSignIn = async (e) => {
         e.preventDefault();
         try {
             // Send a POST request to the server
@@ -37,7 +37,6 @@ function Login({ onLogin }) {
                 console.error('Authentication failed:', errorData);
 
                 // Display an error message to the user
-                // (You might want to do this in a more user-friendly way)
                 alert('Authentication failed. Invalid email or password.');
             }
         } catch (error) {
@@ -60,7 +59,7 @@ function Login({ onLogin }) {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" onSubmit={handleLogin}>
+                    <form className="space-y-6" onSubmit={handleSignIn}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                 Email address
@@ -79,12 +78,9 @@ function Login({ onLogin }) {
                         </div>
 
                         <div>
-                            <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Password
-                                </label>
-
-                            </div>
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                                Password
+                            </label>
                             <div className="mt-2">
                                 <input
                                     id="password"
@@ -110,7 +106,7 @@ function Login({ onLogin }) {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default Login
+export default Login;

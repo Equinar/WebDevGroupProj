@@ -1,12 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Fragment } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
-
 import logo from '../assets/logo.jpg';
+import SignOutButton from './Signout';
 import cart from '../assets/cart.png';
 
-function Navbar({ isAuthenticated, onLogout }) {
+function Navbar({ isAuthenticated, onLogout,setIsAuthenticated }) {
     const navigateSignup = useNavigate();
     const navigateLogin = useNavigate();
     const navigateHome = useNavigate();
@@ -14,21 +13,25 @@ function Navbar({ isAuthenticated, onLogout }) {
     const navigateCart = useNavigate();
 
     const handleSignUp = () => {
-        // Navigate to the Signup page
+        // Navigate to the Sign Up page
         navigateSignup('/signup');
     };
+
     const handleSignIn = () => {
-        // Navigate to the Signup page
+        // Navigate to the Sign In page
         navigateLogin('/login');
     };
+
     const handleGoHome = () => {
         // Navigate to the Home page
         navigateHome('/');
     };
+
     const handleGoAllShops = () => {
         // Navigate to the All Shops page
         navigateAllShops('/allshops');
     };
+
     const handleGoCart = () => {
         // Navigate to the All Shops page
         navigateCart('/Cart');
@@ -86,6 +89,14 @@ function Navbar({ isAuthenticated, onLogout }) {
 
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
+                                        {isAuthenticated && (
+                                            <button
+                                                type="button"
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                                            >
+                                                <Link to="/users">Users</Link>
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -93,10 +104,10 @@ function Navbar({ isAuthenticated, onLogout }) {
                                     {isAuthenticated ? (
                                         <>
                                             <button type="button"
-                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none" 
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                                                 onClick={() => navigate('/profile')}>My Profile</button>
                                             <button type="button"
-                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none" 
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                                                 onClick={handleLogout}>Sign Out</button>
                                         </>
                                     ) : (
