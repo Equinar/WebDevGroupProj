@@ -34,7 +34,7 @@ function App() {
                     path="/"
                     element={
                         isAuthenticated ? (
-                            <Products />
+                            <Home />
                         ) : (
                             <Home />
                         )
