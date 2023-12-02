@@ -21,10 +21,22 @@ app.get('/', (req, res) => {
     res.json({ message: "Welcome to Brogrammers application" });
   });
 
- //Controller
+//Controllers
 const userCtrl = require('./controllers/users.controller.js');
-//No base url string, this may be changed in the future
 app.use('', userCtrl);
+
+const itemCtrl = require('./controllers/items.controller.js');
+app.use('', itemCtrl);
+
+const shopCtrl = require('./controllers/shops.controller.js');
+app.use('', shopCtrl);
+
+const cartCtrl = require('./controllers/carts.controller.js');
+app.use('', cartCtrl);
+
+// Import and run the initialization function
+const initialize = require('./initialize');
+initialize();
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
