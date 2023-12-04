@@ -40,9 +40,8 @@ const Cart = () => {
           {items.map((item) => (
             <li key={item.id}>
               <div>
-
                 <div>
-                  <img className="producticon" src={item.image} alt="product icon" />
+                  <img className="producticon" src={item.image} alt="producticon" />
                   <br />
                   <label className="shopinfo">{item.shopName}</label>
                   <br />

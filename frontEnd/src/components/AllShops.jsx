@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/allshops.css'
 import Image from '../assets/logo.jpg'
 
 const AllShops = () => {
+  const initialItems = [
+    { id: 1, image: Image, shopName: 'Shop A', owner: 'owner1' },
+    { id: 2, image: Image, shopName: 'Shop B', owner: 'owner2' },
+    { id: 3, image: Image, shopName: 'Shop C', owner: 'owner3' },
+    { id: 4, image: Image, shopName: 'Shop D', owner: 'owner4' },
+    { id: 5, image: Image, shopName: 'Shop E', owner: 'owner4' },
+  ];
+
+  const [items, setItems] = useState(initialItems);
+
   return (
 
     <div class="main">
@@ -10,33 +20,16 @@ const AllShops = () => {
       </div>
       <div class="shoplist">
         <ul>
-          <li><img className="shopicon" src={Image} alt="shop icon" />
-            <br></br>
-            <label class="shopinfo">Shop 1</label>
-            <br></br>
-            <br></br>
-            <label class="ownername">owner</label>
-          </li>
-          <li><img className="shopicon" src={Image} alt="shop icon" />
-            <br></br>
-            <label class="shopinfo">Shop 2</label>
-            <br></br>
-            <br></br>
-            <label class="ownername">owner</label>
-          </li>
-          <li><img className="shopicon" src={Image} alt="shop icon" />
-            <br></br>
-            <label class="shopinfo">Shop 3</label>
-            <br></br>
-            <br></br>
-            <label class="ownername">owner</label>
-          </li>          <li><img className="shopicon" src={Image} alt="shop icon" />
-            <br></br>
-            <label class="shopinfo">Shop 4</label>
-            <br></br>
-            <br></br>
-            <label class="ownername">owner</label>
-          </li>
+          {items.map((item) => (
+            <li key={item.id}>
+              <img className="shopicon" src={item.image} alt="shopicon" />
+              <br></br>
+              <label class="shopinfo">{item.shopName}</label>
+              <br></br>
+              <br></br>
+              <label class="ownername">{item.owner}</label>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
