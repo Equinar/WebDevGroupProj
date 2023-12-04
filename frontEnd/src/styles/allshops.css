@@ -1,0 +1,58 @@
+.main {
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    border-color: rgb(153, 153, 153);
+    border-style: dashed;
+    border-width: 1px;
+    width: 1000px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-shadow: 0px 0px 10px #cccccc;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.shoplist {
+    height: 500px;
+    width: 950px;
+    overflow-y: auto;
+    /* This enables vertical scrolling */
+    border: 1px solid #cccccc;
+
+}
+
+li {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: #cccccc;
+    border-style: solid hidden solid hidden;
+    border-width: 1px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    padding-left: 50px;
+}
+
+.shopicon {
+    height: 100px;
+    width: 100px;
+    float: left;
+    border-radius: 50px;
+    
+}
+
+.shopinfo, .ownername {
+    margin-left: 50px;
+}
