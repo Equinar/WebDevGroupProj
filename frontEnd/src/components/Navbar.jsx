@@ -5,12 +5,14 @@ import logo from '../assets/logo.jpg';
 import SignOutButton from './Signout';
 import cart from '../assets/cart.png';
 
-function Navbar({ isAuthenticated, onLogout,setIsAuthenticated }) {
+function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
     const navigateSignup = useNavigate();
     const navigateLogin = useNavigate();
     const navigateHome = useNavigate();
     const navigateAllShops = useNavigate();
     const navigateCart = useNavigate();
+    const navigateProfile = useNavigate();
+
 
     const handleSignUp = () => {
         // Navigate to the Sign Up page
@@ -33,14 +35,21 @@ function Navbar({ isAuthenticated, onLogout,setIsAuthenticated }) {
     };
 
     const handleGoCart = () => {
-        // Navigate to the All Shops page
+        // Navigate to the Cart page
         navigateCart('/Cart');
     };
+
+    const handleGoProfile = () => {
+        // Navigate to the My profile page
+        navigateCart('/profile');
+    };
+
     const handleLogout = () => {
         onLogout();
         localStorage.removeItem('token');
         navigateLogin('/login');
     };
+
 
     return (
         <>
@@ -79,8 +88,8 @@ function Navbar({ isAuthenticated, onLogout,setIsAuthenticated }) {
                                         className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                                         onClick={handleGoCart}
                                     >
-                                        <div class="flex items-center justify-between">
-                                            <label class="flex-grow">Cart</label>
+                                        <div class="flex items-center cursor-pointer justify-between">
+                                            <label class="flex-grow cursor-pointer">Cart</label>
                                             <img class="h-4 w-auto cursor-pointer" src={cart} alt="cart_icon" />
                                         </div>
 
@@ -105,7 +114,8 @@ function Navbar({ isAuthenticated, onLogout,setIsAuthenticated }) {
                                         <>
                                             <button type="button"
                                                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
-                                                onClick={() => navigate('/profile')}>My Profile</button>
+                                                onClick={handleGoProfile}>My Profile</button>
+
                                             <button type="button"
                                                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                                                 onClick={handleLogout}>Sign Out</button>
@@ -124,8 +134,6 @@ function Navbar({ isAuthenticated, onLogout,setIsAuthenticated }) {
                             </div>
 
                         </div>
-
-                        {/* ... Remaining code for mobile menu and navigation links */}
                     </>
                 )}
             </Disclosure>

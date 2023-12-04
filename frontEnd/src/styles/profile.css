@@ -1,0 +1,110 @@
+.main {
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    border-color: rgb(153, 153, 153);
+    border-style: dashed;
+    border-width: 1px;
+    width: 1000px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-shadow: 0px 0px 10px #cccccc;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+
+.account {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border: #cccccc;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.accountIcon {
+    height: 100px;
+    width: 100px;
+    float: left;
+    border-radius: 50px;
+
+}
+
+.accountName,
+.email {
+    margin-left: 50px;
+}
+
+.profilebtn {
+    float: right;
+    width: 150px;
+}
+
+#orderTitle{
+    font-size: 30px;
+}
+
+.order{
+    margin-left: 68px;
+}
+
+.profilebtn>button {
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    -webkit-user-select: none;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+button:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+}
+
+button:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+button:focus {
+    outline: 1px transparent;
+}
+
+button:before {
+    display: none;
+}
