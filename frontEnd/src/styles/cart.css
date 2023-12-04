@@ -55,3 +55,15 @@ li {
 .shopinfo, .itemname {
     margin-left: 50px;
 }
+
+.qtybutton{
+    float: right;
+    padding-right: 100px;
+    padding-bottom: 100px;
+}
+
+.totalprice{
+    float: right;
+    padding-right: 50px;
+    padding-bottom: 100px;
+}
