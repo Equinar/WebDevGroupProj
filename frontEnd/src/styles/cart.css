@@ -23,7 +23,7 @@
     margin-bottom: 20px;
 }
 
-.shoplist {
+.Cart {
     height: 500px;
     width: 950px;
     overflow-y: auto;
@@ -44,7 +44,7 @@ li {
     padding-left: 50px;
 }
 
-.shopicon {
+.producticon {
     height: 100px;
     width: 100px;
     float: left;
@@ -52,6 +52,6 @@ li {
     
 }
 
-.shopinfo, .ownername {
+.shopinfo, .itemname {
     margin-left: 50px;
 }
