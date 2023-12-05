@@ -12,6 +12,7 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
     const navigateAllShops = useNavigate();
     const navigateCart = useNavigate();
     const navigateProfile = useNavigate();
+    const navigateMyShops = useNavigate();
 
 
     const handleSignUp = () => {
@@ -36,12 +37,13 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
 
     const handleGoCart = () => {
         // Navigate to the Cart page
-        navigateCart('/Cart');
+        navigateCart('/cart');
     };
+
 
     const handleGoProfile = () => {
         // Navigate to the My profile page
-        navigateCart('/profile');
+        navigateProfile('/profile');
     };
 
     const handleLogout = () => {
@@ -50,6 +52,10 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
         navigateLogin('/login');
     };
 
+    const handleGoMyShops = () => {
+        // Navigate to the MyShops page
+        navigateMyShops('/myshops');
+    };
 
     return (
         <>
@@ -80,6 +86,7 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
                                     >
                                         All Shops
                                     </button>
+
 
                                     {/* Cart button */}
 
@@ -112,6 +119,15 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
 
                                     {isAuthenticated ? (
                                         <>
+                                            {/* Add My Shops button */}
+                                            <button
+                                                type="button"
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                                                onClick={handleGoMyShops}
+                                            >
+                                                My Shops
+                                            </button>
+
                                             <button type="button"
                                                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                                                 onClick={handleGoProfile}>My Profile</button>
@@ -119,6 +135,7 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
                                             <button type="button"
                                                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
                                                 onClick={handleLogout}>Sign Out</button>
+
                                         </>
                                     ) : (
                                         <>

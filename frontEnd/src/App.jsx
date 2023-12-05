@@ -10,7 +10,8 @@ import AllShops from './components/AllShops.jsx';
 import Cart from './components/Cart.jsx';
 import Profile from './components/Profile.jsx';
 import EditProfile from './components/EditProfile.jsx';
-
+import MyShops from "./components/MyShop.jsx";
+import CreateShop from "./components/CreateShop.jsx";
 
 
 function App() {
@@ -51,6 +52,8 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/editprofile" element={<EditProfile />} />
+                <Route path="/myshops" element={<MyShops />} />
+                <Route path="/create-shop" element={<CreateShop />} />
                 {isAuthenticated && <Route path="/users" element={<Users />} setIsAuthenticated={setIsAuthenticated} />}
             </Routes>
         </Router>
