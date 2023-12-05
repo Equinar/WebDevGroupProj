@@ -5,13 +5,14 @@ const Shop = require('../models/shops.model.js');
 // Create a shop
 router.post('/api/shops', async (req, res) => {
   try {
-    const { name, description, picture, items } = req.body;
+    const { name, description, picture, items, owner } = req.body;
 
     const newShop = new Shop({
       name,
       description,
       picture,
       items,
+      owner,
       created: new Date(),
       updated: new Date(),
     });
@@ -53,9 +54,9 @@ router.get('/api/shops/:shopID', async (req, res) => {
 router.put('/api/shops/:shopID', async (req, res) => {
   try {
     const updatedShop = await Shop.findByIdAndUpdate(
-      req.params.shopID,
-      { $set: req.body, updated: new Date() },
-      { new: true }
+        req.params.shopID,
+        { $set: req.body, updated: new Date() },
+        { new: true }
     ).populate('items');
 
     if (!updatedShop) {
@@ -91,6 +92,22 @@ router.get('/api/shops/search/:substring', async (req, res) => {
     res.json(shops);
   } catch (error) {
     console.error('Error searching shops:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+// Fetch shops owned by a specific user
+router.get('/api/shops/myshops/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Fetch shops where the owner field matches the user's ID
+    const userShops = await Shop.find({ owner: userId });
+    console.log('User shops:', userShops);
+
+    res.json(userShops);
+  } catch (error) {
+    console.error('Error fetching user shops:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

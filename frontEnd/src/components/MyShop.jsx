@@ -4,6 +4,7 @@ import logo from '../assets/logo.jpg';
 
 function MyShops() {
     const [userShops, setUserShops] = useState([]);
+    const [newShops, setNewShops] = useState([]);
     const navigateCreateShop = useNavigate();
     const userName = localStorage.getItem('userName');
 
@@ -11,11 +12,17 @@ function MyShops() {
         // Fetch user ID from local storage
         const userId = localStorage.getItem('userId');
 
-
         // Fetch user shops using the new route
         fetch(`http://localhost:3000/api/shops/myshops/${userId}`)
             .then((response) => response.json())
-            .then((data) => setUserShops(data))
+            .then((data) => {
+                // Split shops into existing and new based on some criteria (e.g., isNew property)
+                const existingShops = data.filter((shop) => !shop.isNew);
+                const newShops = data.filter((shop) => shop.isNew);
+
+                setUserShops(existingShops);
+                setNewShops(newShops);
+            })
             .catch((error) => console.error('Error fetching user shops:', error));
     }, []);
 
@@ -41,32 +48,54 @@ function MyShops() {
                 Create Shop
             </button>
 
-            {/* Available Shops Card */}
+            {/* Display Existing Shops */}
             <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden md:max-w-2xl">
-                <div className="md:flex">
-                    <div className="md:flex-shrink-0">
-                        {/* Shop Image (Assuming shop images are available) */}
-                        <img className="h-48 w-full object-cover md:w-48" src={logo} alt="Shop Image" />
-                    </div>
-                    <div className="p-8">
-                        <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                            Shop Information
+                {userShops.map((shop) => (
+                    <div key={shop._id} className="md:flex mt-2">
+                        <div className="md:flex-shrink-0">
+                            {/* Shop Image (Assuming shop images are available) */}
+                            <img className="h-48 w-full object-cover md:w-48" src={logo} alt="Shop Image" />
                         </div>
-                        {/* Iterate over userShops to display available shops */}
-                        {userShops.map((shop) => (
-                            <div key={shop._id} className="mt-2">
-                                <p
-                                    onClick={() => handleNavigateToShop(shop._id)}
-                                    className="block mt-1 text-lg leading-tight font-medium text-black hover:underline cursor-pointer"
-                                >
-                                    {shop.name}
-                                </p>
-                                <p className="mt-2 text-gray-500">{shop.description}</p>
-                                {/* Add more shop details as needed */}
+                        <div className="p-8">
+                            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                                Shop Information
                             </div>
-                        ))}
+                            <p
+                                onClick={() => handleNavigateToShop(shop._id)}
+                                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline cursor-pointer"
+                            >
+                                {shop.name}
+                            </p>
+                            <p className="mt-2 text-gray-500">{shop.description}</p>
+                            {/* Add more shop details as needed */}
+                        </div>
                     </div>
-                </div>
+                ))}
+            </div>
+
+            {/* Display New Shops */}
+            <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden md:max-w-2xl mt-4">
+                {newShops.map((shop) => (
+                    <div key={shop._id} className="md:flex mt-2">
+                        <div className="md:flex-shrink-0">
+                            {/* Shop Image (Assuming shop images are available) */}
+                            <img className="h-48 w-full object-cover md:w-48" src={logo} alt="Shop Image" />
+                        </div>
+                        <div className="p-8">
+                            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                                New Shop Information
+                            </div>
+                            <p
+                                onClick={() => handleNavigateToShop(shop._id)}
+                                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline cursor-pointer"
+                            >
+                                {shop.name}
+                            </p>
+                            <p className="mt-2 text-gray-500">{shop.description}</p>
+                            {/* Add more shop details as needed */}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
