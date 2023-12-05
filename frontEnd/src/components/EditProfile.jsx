@@ -23,6 +23,7 @@ function ProfileTable({ user, onUpdate }) {
         setChecked(nextChecked);
     };
 
+
     return (
         <form onSubmit={handleSubmit}>
             <table>
