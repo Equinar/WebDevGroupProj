@@ -84,9 +84,7 @@ function ProfileTable({ user, onUpdate }) {
                         </td>
                     </tr>
                 </tbody>
-
             </table>
-
         </form >
 
     );
@@ -126,20 +124,13 @@ function EditProfile() {
                     <div>
                         <p className='title'>Edit My Profile</p>
                         <div className='editFrom'>
-
                             <ProfileTable user={user} onUpdate={handleUpdateUser} />
-
-                        </div>
-
-                        <div>
-
                         </div>
                     </div>
                 ) : (
                     <p>Not authentication.</p>
                 )}
             </div>
-
         </div>
     );
 }
