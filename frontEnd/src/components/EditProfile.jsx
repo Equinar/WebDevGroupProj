@@ -57,7 +57,7 @@ function ProfileTable({ user, onUpdate }) {
                     </tr>
                 </tbody>
             </table>
-        </form>
+        </form >
     );
 }
 
@@ -69,7 +69,7 @@ function UserProfile() {
         fetch('http://localhost:3000/api/users/' + userId)
             .then((response) => response.json())
             .then((data) => setUser(data))
-            .catch((error) => console.error('获取用户数据出错：', error));
+            .catch((error) => console.error('User data incorrect!：', error));
     }, []);
 
     const handleUpdateUser = (updatedUser) => {
@@ -90,14 +90,18 @@ function UserProfile() {
 
     return (
         <div>
-            {user ? (
-                <div>
-                    <h2>Edit My Profile</h2>
-                    <ProfileTable user={user} onUpdate={handleUpdateUser} />
-                </div>
-            ) : (
-                <p>Not authentication.</p>
-            )}
+            <div className='main'>
+
+                {user ? (
+                    <div>
+                        <p className='title'>Edit My Profile</p>
+                        <ProfileTable user={user} onUpdate={handleUpdateUser} />
+                    </div>
+                ) : (
+                    <p>Not authentication.</p>
+                )}
+            </div>
+
         </div>
     );
 }
