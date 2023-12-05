@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import '../styles/editprofile.css';
+import Switch from "react-switch";
+
 
 
 function ProfileTable({ user, onUpdate }) {
     const [editedUser, setEditedUser] = useState(user);
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -15,12 +18,17 @@ function ProfileTable({ user, onUpdate }) {
         onUpdate(editedUser);
     };
 
+    const [checked, setChecked] = useState(false);
+    const handleChange = nextChecked => {
+        setChecked(nextChecked);
+    };
+
     return (
         <form onSubmit={handleSubmit}>
             <table>
                 <tbody>
                     <tr>
-                        <td>Name </td>
+                        <td className='tdItems'>Name </td>
                     </tr>
                     <tr>
                         <td><input
@@ -30,9 +38,9 @@ function ProfileTable({ user, onUpdate }) {
                             onChange={handleInputChange}
                         /></td></tr>
                     <tr>
-                        <td>Email</td>
-                        </tr>
-                        <tr>
+                        <td className='tdItems'>Email</td>
+                    </tr>
+                    <tr>
                         <td><input
                             type="email"
                             name="email"
@@ -41,7 +49,7 @@ function ProfileTable({ user, onUpdate }) {
                         /></td>
                     </tr>
                     <tr>
-                        <td>Password</td></tr><tr>
+                        <td className='tdPassword'>Password</td></tr><tr>
                         <td><input
                             type="password"
                             name="password"
@@ -53,15 +61,30 @@ function ProfileTable({ user, onUpdate }) {
                         <hr></hr>
                         <p className='subtitle'>Switch to Seller Account</p>
                     </tr>
+                    <label>
+                        <span>{checked ? "Active" : "Inactive"}</span>
+                        <Switch
+                            onChange={handleChange}
+                            checked={checked}
+                            className="switchbtn"
+                            onColor="#86d3ff"
+                            onHandleColor="#2693e6"
+                            handleDiameter={30}
+                            uncheckedIcon={false}
+                            checkedIcon={false}
+                            boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                            activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                            height={15}
+                            width={48}
+                        />
+                    </label>
                     <tr>
                         <td colSpan="2">
                             <button className='submitbtn' type="submit">Submit</button>
                         </td>
                     </tr>
                 </tbody>
-
             </table>
-
         </form >
 
     );
@@ -101,20 +124,13 @@ function EditProfile() {
                     <div>
                         <p className='title'>Edit My Profile</p>
                         <div className='editFrom'>
-
                             <ProfileTable user={user} onUpdate={handleUpdateUser} />
-
-                        </div>
-
-                        <div>
-
                         </div>
                     </div>
                 ) : (
                     <p>Not authentication.</p>
                 )}
             </div>
-
         </div>
     );
 }
