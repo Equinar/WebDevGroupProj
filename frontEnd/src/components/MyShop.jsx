@@ -7,6 +7,7 @@ function MyShops() {
     const [newShops, setNewShops] = useState([]);
     const navigateCreateShop = useNavigate();
     const userName = localStorage.getItem('userName');
+    const navigateEditShop = useNavigate();
 
     useEffect(() => {
         // Fetch user ID from local storage
@@ -29,6 +30,10 @@ function MyShops() {
     const handleCreateShop = () => {
         // Navigate to the page where the user can create a new shop
         navigateCreateShop('/create-shop');
+    };
+    const handleEditShop = (shopId) => {
+        // Navigate to the edit shop page for the specific shop
+        navigateEditShop(`/editshop/${shopId}`);
     };
 
     const handleNavigateToShop = (shopId) => {
@@ -55,12 +60,11 @@ function MyShops() {
     };
 
     return (
-        <div>
+        <div className="flex items-center justify-center flex-col">
             <h2 className='text-center text-6xl mt-4'>{userName}'s Shops</h2>
-
             {/* Create a New Shop button */}
             <button
-                className="mt-4 bg-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+                className="mt-4 bg-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={handleCreateShop}
             >
                 Create Shop
@@ -92,6 +96,13 @@ function MyShops() {
                                 onClick={() => handleDeleteShop(shop._id)}
                             >
                                 Delete Shop
+                            </button>
+
+                            <button
+                                className="mt-4 bg-blue-400 mx-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-center"
+                                onClick={() => handleEditShop(shop._id)}
+                            >
+                                Edit Shop
                             </button>
                         </div>
                     </div>
