@@ -5,10 +5,12 @@ import logo from '../assets/logo.jpg';
 function MyShops() {
     const [userShops, setUserShops] = useState([]);
     const navigateCreateShop = useNavigate();
+    const userName = localStorage.getItem('userName');
 
     useEffect(() => {
         // Fetch user ID from local storage
         const userId = localStorage.getItem('userId');
+
 
         // Fetch user shops using the new route
         fetch(`http://localhost:3000/api/shops/myshops/${userId}`)
@@ -29,7 +31,7 @@ function MyShops() {
 
     return (
         <div>
-            <h2 className='text-center text-6xl mt-4'>My Shops</h2>
+            <h2 className='text-center text-6xl mt-4'>{userName}'s Shops</h2>
 
             {/* Create a New Shop button */}
             <button
