@@ -46,10 +46,10 @@ const Profile = () => {
               <br />
               <div className="profilebtn">
                 <button onClick={() => handleEdit(item.id)}>
-                  <img className="h-4 w-auto cursor-pointer" src={Edit} alt="editIcon" />
+                  <img className="h-4 w-auto cursor-pointer" src={Edit} alt="editIcon" title="Edit Profile" />
                 </button>
                 <button onClick={() => handleDelete(item.id)}>
-                  <img className="h-4 w-auto cursor-pointer" src={Bin} alt="binIcon" />
+                  <img className="h-4 w-auto cursor-pointer" src={Bin} alt="binIcon" title="Delete Profile" />
                 </button>
               </div>
               <br />
