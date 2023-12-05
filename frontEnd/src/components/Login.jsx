@@ -29,9 +29,18 @@ function Login({ onLogin }) {
                 const data = await response.json();
                 const token = data.token;
                 const decoded = jwtDecode(token);
-                const userId = decoded._id
+                console.log(decoded);
+                const userId = decoded._id;
+                const userName = decoded.name;
+                const userEmail = decoded.email;
+                const userJoinDate = new Date(decoded.created).toLocaleDateString();
+                localStorage.setItem('token', token);
                 localStorage.setItem('userId', userId);
+                localStorage.setItem('userName', userName);
+                localStorage.setItem('userEmail', userEmail);
+                localStorage.setItem('userJoinDate', userJoinDate);
                 console.log(userId);
+                console.log('Decoded joinDate:', userJoinDate);
                 onLogin(); // Update isAuthenticated state in App
                 console.log('Sign-in successful:', data);
                 navigate('/')

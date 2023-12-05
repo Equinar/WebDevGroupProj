@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/profile.css';
 import Image from '../assets/logo.jpg';
 import Bin from '../assets/profile/bin.png';
@@ -15,6 +15,21 @@ const Profile = () => {
   const [items, setItems] = useState(initialItems);
   const [orders, setOrders] = useState(orderItems);
 
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userJoinDate, setUserJoinDate] = useState('');
+
+    useEffect(() => {
+        // Retrieve user name from local storage
+        const storedUserName = localStorage.getItem('userName');
+        setUserName(storedUserName);
+        const storedUserEmail = localStorage.getItem('userEmail');
+        setUserEmail(storedUserEmail);
+        const storedUserJoinDate = localStorage.getItem('userJoinDate');
+        setUserJoinDate(storedUserJoinDate);
+    }, []);
+
+
 
   return (
     <div className="main">
@@ -27,7 +42,7 @@ const Profile = () => {
             <div>
               <img className="accountIcon" src={item.image} alt="accountIcon" />
               <br />
-              <label className="accountName">{item.account}</label>
+              <label className="accountName text-2xl">Name: {userName}</label>
               <br />
               <div className="profilebtn">
                 <button onClick={() => handleEdit(item.id)}>
@@ -38,14 +53,14 @@ const Profile = () => {
                 </button>
               </div>
               <br />
-              <label className="email">{item.email}</label>
+              <label className="email text-2xl">Email: {userEmail}</label>
             </div>
             <br />
             <br />
             <hr></hr>
             <br />
             <div>
-              <label className="joinDate">Joined us since: {item.joinDate}</label>
+              <label className="joinDate text-2xl">Joined us since: {userJoinDate}</label>
             </div>
           </div>
         ))}
