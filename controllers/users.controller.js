@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users.model.js');
+const Cart = require('../models/carts.model.js');
 const bcrypt = require('bcrypt'); // For password hashing
 
 // Create a user
@@ -19,10 +20,19 @@ router.post('/api/users', async (req, res) => {
       created: new Date(),
       updated: new Date(),
     });
-
+    //save the new user
     const savedUser = await newUser.save();
-    //respond with the saved user document
-    res.json(savedUser);
+
+    //create a cart for the user
+    const newCart = new Cart({
+      userID: savedUser._id,  
+      created: new Date(),
+      updated: new Date(),
+    });
+    //save the new cart
+    const savedCart = await newCart.save();
+    //respond with the saved user and cart documents
+    res.json({ user: savedUser, cart: savedCart });
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ error: 'Internal Server Error' });
