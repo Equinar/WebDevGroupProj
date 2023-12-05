@@ -36,20 +36,38 @@ function MyShops() {
         navigateCreateShop(`/shop/${shopId}`);
     };
 
+    const handleDeleteShop = async (shopId) => {
+        // Implement the logic to delete the shop using the shopId
+        try {
+            const response = await fetch(`http://localhost:3000/api/shops/${shopId}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                // Update the state after successful deletion
+                setUserShops((prevShops) => prevShops.filter((shop) => shop._id !== shopId));
+            } else {
+                console.error('Error deleting shop:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error deleting shop:', error);
+        }
+    };
+
     return (
         <div>
             <h2 className='text-center text-6xl mt-4'>{userName}'s Shops</h2>
 
             {/* Create a New Shop button */}
             <button
-                className="mt-4 bg-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-center"
+                className="mt-4 bg-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
                 onClick={handleCreateShop}
             >
                 Create Shop
             </button>
 
             {/* Display Existing Shops */}
-            <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden md:max-w-2xl">
+            <div className="mt-4 max-w-md mx-auto bg-white rounded-xl overflow-hidden md:max-w-2xl">
                 {userShops.map((shop) => (
                     <div key={shop._id} className="md:flex mt-2">
                         <div className="md:flex-shrink-0">
@@ -68,8 +86,16 @@ function MyShops() {
                             </p>
                             <p className="mt-2 text-gray-500">{shop.description}</p>
                             {/* Add more shop details as needed */}
+
+                            <button
+                                className="mt-4 bg-red-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-center"
+                                onClick={() => handleDeleteShop(shop._id)}
+                            >
+                                Delete Shop
+                            </button>
                         </div>
                     </div>
+
                 ))}
             </div>
 
