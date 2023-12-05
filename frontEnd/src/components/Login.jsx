@@ -1,6 +1,7 @@
 import logo from '../assets/logo.jpg'
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 
 
 
@@ -24,9 +25,14 @@ function Login({ onLogin }) {
 
             // Check if the request was successful (status code 200)
             if (response.ok) {
-                onLogin(); // Update isAuthenticated state in App
                 // Parse the JSON response
                 const data = await response.json();
+                const token = data.token;
+                const decoded = jwtDecode(token);
+                const userId = decoded._id
+                localStorage.setItem('userId', userId);
+                console.log(userId);
+                onLogin(); // Update isAuthenticated state in App
                 console.log('Sign-in successful:', data);
                 navigate('/')
 

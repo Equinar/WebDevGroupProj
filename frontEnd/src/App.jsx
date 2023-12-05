@@ -9,11 +9,13 @@ import Users from './components/Users.jsx';
 import AllShops from './components/AllShops.jsx';
 import Cart from './components/Cart.jsx';
 import Profile from './components/Profile.jsx';
+import EditProfile from './components/EditProfile.jsx';
+
 
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    
     const handleLogin = () => {
         // Perform authentication logic and set isAuthenticated to true upon successful login
         setIsAuthenticated(true);
@@ -48,6 +50,7 @@ function App() {
                 <Route path="/allshops" element={<AllShops />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/editprofile" element={<EditProfile />} />
                 {isAuthenticated && <Route path="/users" element={<Users />} setIsAuthenticated={setIsAuthenticated} />}
             </Routes>
         </Router>
