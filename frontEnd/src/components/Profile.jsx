@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import '../styles/profile.css';
 import Image from '../assets/logo.jpg';
 import Bin from '../assets/profile/bin.png';
 import Edit from '../assets/profile/edit.png';
+import { useNavigate, Link } from 'react-router-dom';
+
 
 const Profile = () => {
   const initialItems = [
@@ -15,19 +17,26 @@ const Profile = () => {
   const [items, setItems] = useState(initialItems);
   const [orders, setOrders] = useState(orderItems);
 
-    const [userName, setUserName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [userJoinDate, setUserJoinDate] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userJoinDate, setUserJoinDate] = useState('');
 
-    useEffect(() => {
-        // Retrieve user name from local storage
-        const storedUserName = localStorage.getItem('userName');
-        setUserName(storedUserName);
-        const storedUserEmail = localStorage.getItem('userEmail');
-        setUserEmail(storedUserEmail);
-        const storedUserJoinDate = localStorage.getItem('userJoinDate');
-        setUserJoinDate(storedUserJoinDate);
-    }, []);
+
+  const navigateEditProfile = useNavigate();
+  const handleGoEditProfile = () => {
+    // Navigate to the edit profile page
+    navigateEditProfile('/editProfile');
+  };
+
+  useEffect(() => {
+    // Retrieve user name from local storage
+    const storedUserName = localStorage.getItem('userName');
+    setUserName(storedUserName);
+    const storedUserEmail = localStorage.getItem('userEmail');
+    setUserEmail(storedUserEmail);
+    const storedUserJoinDate = localStorage.getItem('userJoinDate');
+    setUserJoinDate(storedUserJoinDate);
+  }, []);
 
 
 
@@ -46,7 +55,7 @@ const Profile = () => {
               <br />
               <div className="profilebtn">
                 <button onClick={() => handleEdit(item.id)}>
-                  <img className="h-4 w-auto cursor-pointer" src={Edit} alt="editIcon" title="Edit Profile" />
+                  <img className="h-4 w-auto cursor-pointer" src={Edit} alt="editIcon" onClick={handleGoEditProfile} title="Edit Profile" />
                 </button>
                 <button onClick={() => handleDelete(item.id)}>
                   <img className="h-4 w-auto cursor-pointer" src={Bin} alt="binIcon" title="Delete Profile" />
@@ -66,7 +75,7 @@ const Profile = () => {
         ))}
       </div>
       <div className="order">
-          <p id="orderTitle">Orders:</p>
+        <p id="orderTitle">Orders:</p>
         {orders.map((order) => (
           <div key={order.id} className="accountItem">
             <div>
