@@ -58,6 +58,10 @@ router.get('/api/users/:userID', async (req, res) => {
 // Update a user
 router.put('/api/users/:userID', async (req, res) => {
   try {
+    if ('password' in req.body) {
+      // Hash the updated password before saving it
+      req.body.password = await bcrypt.hash(req.body.password, 10);
+    }
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userID,
       //once the user is found, update the sent parameters and generate a new timestamp for the 'updated' field
