@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/editprofile.css';
+
 
 function ProfileTable({ user, onUpdate }) {
     const [editedUser, setEditedUser] = useState(user);
@@ -18,50 +20,54 @@ function ProfileTable({ user, onUpdate }) {
             <table>
                 <tbody>
                     <tr>
-                        <th>Name</th>
-                        <td>
-                            <input
-                                type="text"
-                                name="name"
-                                value={editedUser.name}
-                                onChange={handleInputChange}
-                            />
-                        </td>
+                        <td>Name </td>
                     </tr>
                     <tr>
-                        <th>Email</th>
-                        <td>
-                            <input
-                                type="email"
-                                name="email"
-                                value={editedUser.email}
-                                onChange={handleInputChange}
-                            />
-                        </td>
+                        <td><input
+                            type="text"
+                            name="name"
+                            value={editedUser.name}
+                            onChange={handleInputChange}
+                        /></td></tr>
+                    <tr>
+                        <td>Email</td>
+                        </tr>
+                        <tr>
+                        <td><input
+                            type="email"
+                            name="email"
+                            value={editedUser.email}
+                            onChange={handleInputChange}
+                        /></td>
                     </tr>
                     <tr>
-                        <th>Password</th>
-                        <td>
-                            <input
-                                type="password"
-                                name="password"
-                                value={editedUser.password}
-                                onChange={handleInputChange}
-                            />
-                        </td>
+                        <td>Password</td></tr><tr>
+                        <td><input
+                            type="password"
+                            name="password"
+                            value={editedUser.password}
+                            onChange={handleInputChange}
+                        /></td>
+                    </tr>
+                    <tr>
+                        <hr></hr>
+                        <p className='subtitle'>Switch to Seller Account</p>
                     </tr>
                     <tr>
                         <td colSpan="2">
-                            <button type="submit">Submit</button>
+                            <button className='submitbtn' type="submit">Submit</button>
                         </td>
                     </tr>
                 </tbody>
+
             </table>
+
         </form >
+
     );
 }
 
-function UserProfile() {
+function EditProfile() {
     const [user, setUser] = useState(null);
     const userId = localStorage.getItem('userId');
 
@@ -90,12 +96,19 @@ function UserProfile() {
 
     return (
         <div>
-            <div className='main'>
-
+            <div className='editProfileMain'>
                 {user ? (
                     <div>
                         <p className='title'>Edit My Profile</p>
-                        <ProfileTable user={user} onUpdate={handleUpdateUser} />
+                        <div className='editFrom'>
+
+                            <ProfileTable user={user} onUpdate={handleUpdateUser} />
+
+                        </div>
+
+                        <div>
+
+                        </div>
                     </div>
                 ) : (
                     <p>Not authentication.</p>
@@ -106,5 +119,5 @@ function UserProfile() {
     );
 }
 
-export default UserProfile;
+export default EditProfile;
 
