@@ -1,0 +1,233 @@
+**Users Endpoints**
+
+Create a User - (POST) /api/users
+
+Parameters:
+
+name (body parameter): Name of the user.
+email (body parameter): Email address of the user.
+password (body parameter): Password for the user.
+
+
+
+List Users - (GET) /api/users
+
+Parameters: None
+
+
+
+Get User by ID - (GET) /api/users/:userID
+
+Parameters:
+
+userID (path parameter): ID of the user.
+
+
+
+Update User - (PUT) /api/users/:userID
+
+Parameters:
+
+userID (path parameter): ID of the user to update.
+name (body parameter): New name of the user.
+email (body parameter): New email address of the user.
+password (body parameter): New password for the user.
+
+
+
+Delete User - (DELETE) /api/users/:userID
+
+Parameters:
+
+userID (path parameter): ID of the user to delet
+
+
+
+User Sign-In - (POST) /auth/signin
+
+Parameters:
+
+email (body parameter): Email address of the user.
+password (body parameter): Password for the user.
+
+
+User Sign-Out - (GET) /auth/signout
+
+Parameters: None
+
+
+
+
+
+
+
+
+
+**Items Endpoints**
+
+Add an Item - (POST) /api/items
+
+Parameters:
+
+name (body parameter): Name of the item.
+description (body parameter): Description of the item.
+picture (body parameter): path to image including the relative path. (../frontEnd/src/assets/items/FILENAME)
+price (body parameter): Price of the item.
+
+
+
+List All Items - (GET) /api/items
+
+Parameters: None
+
+
+
+Get an Item by ID - (GET) /api/items/:itemID
+
+Parameters:
+
+itemID (path parameter): ID of the item.
+
+
+
+Update an Item - (PUT) /api/items/:itemID
+
+Parameters:
+
+itemID (path parameter): ID of the item to update.
+name (body parameter): New name of the item.
+description (body parameter): New description of the item.
+picture (body parameter): path to image including the relative path. (../frontEnd/src/assets/items/FILENAME)
+price (body parameter): New price of the item.
+
+
+
+Delete an Item - (DELETE) /api/items/:itemID
+
+Parameters:
+
+itemID (path parameter): ID of the item to delete.
+
+
+
+Find Items by Substring - (GET) /api/items/search/:substring
+
+Parameters:
+
+substring (path parameter): Substring to search for in item names.
+
+
+
+
+
+
+
+
+**Shops Endpoints**
+
+Create a Shop - (POST) /api/shops
+
+Parameters:
+
+name (body parameter): Name of the shop.
+description (body parameter): Description of the shop.
+picture (body parameter): path to image including the relative path. (../frontEnd/src/assets/shops/FILENAME)
+items (body parameter): Array of item IDs associated with the shop.
+
+
+
+List All Shops - (GET) /api/shops
+
+Parameters: None
+
+
+
+Find a Shop by ID - (GET) /api/shops/:shopID
+
+Parameters:
+
+shopID (path parameter): ID of the shop.
+
+
+
+Update a Shop - (PUT) /api/shops/:shopID
+
+Parameters:
+
+shopID (path parameter): ID of the shop to update.
+name (body parameter): New name of the shop.
+description (body parameter): New description of the shop.
+picture (body parameter): path to image including the relative path. (../frontEnd/src/assets/shops/FILENAME)
+items (body parameter): New array of item IDs associated with the shop.
+
+
+
+Delete a Shop - (DELETE) /api/shops/:shopID
+
+Parameters:
+
+shopID (path parameter): ID of the shop to delete.
+
+
+
+Find Shops by Substring - (GET) /api/shops/search/:substring
+
+Parameters:
+
+substring (path parameter): Substring to search for in shop names.
+
+
+
+
+
+
+
+
+**Carts Endpoints**
+
+Create a new Cart - (POST) /api/carts
+
+Parameters:
+
+userID (body parameter): ID of the user associated with the cart.
+items (body parameter): Array of items in the cart, each containing itemID and quantity.
+
+
+
+List All Carts - (GET) /api/carts
+
+Parameters: None
+
+
+
+Find a Specific Cart by ID - (GET) /api/carts/:cartID
+
+Parameters:
+
+cartID (path parameter): ID of the cart.
+
+
+
+Update a Cart - (PUT) /api/carts/:cartID
+
+Parameters:
+
+cartID (path parameter): ID of the cart to update.
+userID (body parameter): New user ID associated with the cart.
+items (body parameter): New array of items in the cart, each containing itemID and quantity.
+
+
+
+Delete a Cart - (DELETE) /api/carts/:cartID
+
+Parameters:
+
+cartID (path parameter): ID of the cart to delete.
+
+
+
+Find Cart by User ID - (GET) /api/carts/user/:userID
+
+Parameters:
+
+userID (path parameter): ID of the user.
