@@ -1,4 +1,4 @@
-import React, { useState, useEffect,  } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/profile.css';
 import Image from '../assets/logo.jpg';
 import Bin from '../assets/profile/bin.png';
@@ -28,6 +28,22 @@ const Profile = () => {
     navigateEditProfile('/editProfile');
   };
 
+  const userId = localStorage.getItem('userId');
+  const handleDeleteUser = () => {
+    fetch('http://localhost:3000/api/users/' + userId, {
+      method: 'DELETE',
+      header: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+            .then((data) => {
+                alert('Delete Successfully');
+                navigateEditProfile('/');
+            })
+            .catch((error) => console.error('Updated Error.', error));
+  };
+
   useEffect(() => {
     // Retrieve user name from local storage
     const storedUserName = localStorage.getItem('userName');
@@ -54,10 +70,10 @@ const Profile = () => {
               <label className="accountName text-2xl">Name: {userName}</label>
               <br />
               <div className="profilebtn">
-                <button onClick={() => handleEdit(item.id)}>
-                  <img className="h-4 w-auto cursor-pointer" src={Edit} alt="editIcon" onClick={handleGoEditProfile} title="Edit Profile" />
+                <button onClick={(handleGoEditProfile)}>
+                  <img className="h-4 w-auto cursor-pointer" src={Edit} alt="editIcon" title="Edit Profile" />
                 </button>
-                <button onClick={() => handleDelete(item.id)}>
+                <button onClick={(handleDeleteUser)}>
                   <img className="h-4 w-auto cursor-pointer" src={Bin} alt="binIcon" title="Delete Profile" />
                 </button>
               </div>
@@ -66,7 +82,7 @@ const Profile = () => {
             </div>
             <br />
             <br />
-            <hr></hr>
+            <hr className='profilehr'></hr>
             <br />
             <div>
               <label className="joinDate text-2xl">Joined us since: {userJoinDate}</label>

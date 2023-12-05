@@ -15,7 +15,7 @@ const AllShops = () => {
 
   return (
 
-    <div class="main">
+    <div class="allShopsMain">
       <div><p class="title">Shop List</p>
       </div>
       <div class="shoplist">
