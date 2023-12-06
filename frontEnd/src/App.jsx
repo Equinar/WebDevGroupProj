@@ -13,6 +13,7 @@ import EditProfile from './components/EditProfile.jsx';
 import MyShops from "./components/MyShop.jsx";
 import CreateShop from "./components/CreateShop.jsx";
 import EditShop from "./components/EditShop.jsx";
+import CreateItemForm from './components/CreateItemForm.jsx';
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
                 <Route path="/editprofile" element={<EditProfile />} />
                 <Route path="/myshops" element={<MyShops />} />
                 <Route path="/editshop/:shopId" element={<EditShop />} />
+                <Route path="/createitem/:shopId" element={<CreateItemForm />} />
                 <Route path="/create-shop" element={<CreateShop />} />
                 {isAuthenticated && <Route path="/users" element={<Users />} setIsAuthenticated={setIsAuthenticated} />}
             </Routes>
