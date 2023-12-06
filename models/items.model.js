@@ -23,6 +23,11 @@ const itemSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  shop: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Shop', // Reference to the Shop model
+    required: true,
+  },
   created: {
     type: Date,
     required: true,

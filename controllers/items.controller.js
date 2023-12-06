@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Item = require('../models/items.model.js');
+const Shop = require('../models/shops.model.js');
 
 // Add an item
 router.post('/api/items', async (req, res) => {
@@ -94,5 +95,38 @@ router.get('/api/items/search/:substring', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+// Create an item associated with a specific shop
+router.post('/api/shops/:shopId/items', async (req, res) => {
+  try {
+    const { name, description, picture, price } = req.body;
+    const shopId = req.params.shopId;
+
+    // Check if the shop with the given ID exists
+    const shop = await Shop.findById(shopId);
+    if (!shop) {
+      return res.status(404).json({ error: 'Shop not found' });
+    }
+
+    const newItem = new Item({
+      name,
+      description,
+      picture,
+      price,
+      shop: shopId,  // Associate the item with the shop
+      created: new Date(),
+      updated: new Date(),
+    });
+
+    const savedItem = await newItem.save();
+    res.json(savedItem);
+  } catch (error) {
+    console.error('Error creating item:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;
 
 module.exports = router;

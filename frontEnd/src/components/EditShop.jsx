@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 function EditShop() {
     const { shopId } = useParams();
@@ -61,6 +61,11 @@ function EditShop() {
     return (
         <div>
             <h2 className='mt-4 text-3xl text-center'>Edit Shop</h2>
+            <Link to={`/createitem/${shopId}`}>
+                <button className='mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
+                    Add New Product
+                </button>
+            </Link>
             <form onSubmit={handleSubmit} className='mt-4 max-w-md mx-auto'>
                 <div className='mb-4'>
                     <label htmlFor='name' className='block text-gray-700 text-sm font-bold mb-2'>
