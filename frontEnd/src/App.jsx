@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from "./components/Login.jsx";
@@ -17,6 +17,15 @@ import EditShop from "./components/EditShop.jsx";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        // Check local storage for authentication token
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Token found, set isAuthenticated to true
+            setIsAuthenticated(true);
+        }
+    }, []);
     
     const handleLogin = () => {
         // Perform authentication logic and set isAuthenticated to true upon successful login
