@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-const Shop = require('../models/shop.model.js');
+// const Shop = require('../models/shop.model.js');
 
 
 const CreateItemForm = () => {
@@ -22,7 +22,7 @@ const CreateItemForm = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch(`http://localhost:3000/api/shops/${shopId}/items`, {
+      const response = await fetch(`https://comp229-groupproj.onrender.com/${shopId}/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
