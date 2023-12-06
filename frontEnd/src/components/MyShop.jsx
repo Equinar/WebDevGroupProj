@@ -76,7 +76,7 @@ function MyShops() {
                     <div key={shop._id} className="md:flex mt-2">
                         <div className="md:flex-shrink-0">
                             {/* Shop Image (Assuming shop images are available) */}
-                            <img className="h-48 w-full object-cover md:w-48" src={logo} alt="Shop Image" />
+                            <img className="mx-4 h-48 w-full object-cover md:w-48" src={logo} alt="Shop Image" />
                         </div>
                         <div className="p-8">
                             <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">

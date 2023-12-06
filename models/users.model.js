@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    enum: ['user', 'seller'],
+    default: 'user',
+  },
   created: {
     type: Date,
     required: true,
@@ -34,7 +39,8 @@ userSchema.methods.generateAuthToken = function () {
     _id: this._id,
     name: this.name,
     email: this.email,
-    created: this.created
+    created: this.created,
+    role: this.role
   }, 'secretkey');
   return token;
 };

@@ -13,6 +13,7 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
     const navigateCart = useNavigate();
     const navigateProfile = useNavigate();
     const navigateMyShops = useNavigate();
+    const userRole = localStorage.getItem('userRole');
 
 
     const handleSignUp = () => {
@@ -120,13 +121,15 @@ function Navbar({ isAuthenticated, onLogout, setIsAuthenticated }) {
                                     {isAuthenticated ? (
                                         <>
                                             {/* Add My Shops button */}
-                                            <button
-                                                type="button"
-                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
-                                                onClick={handleGoMyShops}
-                                            >
-                                                My Shops
-                                            </button>
+                                            {isAuthenticated && userRole === 'seller' && (
+                                                <button
+                                                    type="button"
+                                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                                                    onClick={handleGoMyShops}
+                                                >
+                                                    My Shops
+                                                </button>
+                                            )}
 
                                             <button type="button"
                                                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none"

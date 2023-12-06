@@ -7,37 +7,51 @@ const bcrypt = require('bcrypt'); // For password hashing
 // Create a user
 router.post('/api/users', async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    
+    const { name, email, password, role } = req.body;
+
     // Hash the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create a new user instance
     const newUser = new User({
       name,
       email,
       password: hashedPassword,
-      //Automatically generate both dates
-      created: new Date(),
-      updated: new Date(),
+      role,
     });
-    //save the new user
+
+    // Save the new user
     const savedUser = await newUser.save();
 
-    //create a cart for the user
+    // Log the saved user (for debugging purposes)
+    console.log('Saved User:', savedUser);
+
+    // Create a cart for the user
     const newCart = new Cart({
-      userID: savedUser._id,  
+      userID: savedUser._id,
       created: new Date(),
       updated: new Date(),
     });
-    //save the new cart
+
+    // Save the new cart
     const savedCart = await newCart.save();
-    //respond with the saved user and cart documents
+
+    // Log the saved cart (for debugging purposes)
+    console.log('Saved Cart:', savedCart);
+
+    // Respond with the saved user and cart documents
     res.json({ user: savedUser, cart: savedCart });
   } catch (error) {
     console.error('Error creating user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+
+    // Log additional details about the request
+    console.error('Request body:', req.body);
+
+    // Send an error response with details
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
+
 
 // List all users
 router.get('/api/users', async (req, res) => {
@@ -71,6 +85,11 @@ router.put('/api/users/:userID', async (req, res) => {
     if ('password' in req.body) {
       // Hash the updated password before saving it
       req.body.password = await bcrypt.hash(req.body.password, 10);
+    }
+
+    // Add logic to set the role during user update
+    if ('role' in req.body) {
+      req.body.role = req.body.role.toLowerCase(); // Ensure consistency, e.g., 'seller' or 'Seller'
     }
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userID,
