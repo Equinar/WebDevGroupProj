@@ -101,14 +101,14 @@ function EditProfile() {
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/users/' + userId)
+        fetch('https://comp229-groupproj.onrender.com/api/users/' + userId)
             .then((response) => response.json())
             .then((data) => setUser(data))
             .catch((error) => console.error('User data incorrect!：', error));
     }, []);
 
     const handleUpdateUser = (updatedUser) => {
-        fetch('http://localhost:3000/api/users/' + userId, {
+        fetch('https://comp229-groupproj.onrender.com/api/users/' + userId, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

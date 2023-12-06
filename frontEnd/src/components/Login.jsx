@@ -15,7 +15,7 @@ function Login({ onLogin }) {
         e.preventDefault();
         try {
             // Send a POST request to the server
-            const response = await fetch('http://localhost:3000/auth/signin', {
+            const response = await fetch('https://comp229-groupproj.onrender.com/auth/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

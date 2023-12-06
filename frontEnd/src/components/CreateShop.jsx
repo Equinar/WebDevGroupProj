@@ -26,7 +26,7 @@ function CreateShop() {
             const defaultItems = []; // Set your default items here
 
             // Send a POST request to create a new shop
-            const response = await fetch('http://localhost:3000/api/shops', {
+            const response = await fetch('https://comp229-groupproj.onrender.com/api/shops', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

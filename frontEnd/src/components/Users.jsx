@@ -5,7 +5,7 @@ function Users() {
 
     useEffect(() => {
         // Fetch all users logic
-        fetch('http://localhost:3000/api/users')
+        fetch('https://comp229-groupproj.onrender.com/api/users')
             .then(response => response.json())
             .then(data => {
                 setUsers(data);

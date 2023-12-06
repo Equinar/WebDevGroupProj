@@ -14,7 +14,7 @@ function MyShops() {
         const userId = localStorage.getItem('userId');
 
         // Fetch user shops using the new route
-        fetch(`http://localhost:3000/api/shops/myshops/${userId}`)
+        fetch(`https://comp229-groupproj.onrender.com/api/shops/myshops/${userId}`)
             .then((response) => response.json())
             .then((data) => {
                 // Split shops into existing and new based on some criteria (e.g., isNew property)
@@ -44,7 +44,7 @@ function MyShops() {
     const handleDeleteShop = async (shopId) => {
         // Implement the logic to delete the shop using the shopId
         try {
-            const response = await fetch(`http://localhost:3000/api/shops/${shopId}`, {
+            const response = await fetch(`https://comp229-groupproj.onrender.com/api/shops/${shopId}`, {
                 method: 'DELETE',
             });
 

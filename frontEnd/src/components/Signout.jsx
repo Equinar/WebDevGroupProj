@@ -7,7 +7,7 @@ function SignOutButton({ setIsAuthenticated }) {
     const handleSignOut = async () => {
         try {
             // Make a request to the backend to sign the user out
-            const response = await fetch('http://localhost:3000/auth/signout', {
+            const response = await fetch('https://comp229-groupproj.onrender.com/auth/signout', {
                 method: 'GET',
             });
 

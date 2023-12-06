@@ -30,7 +30,7 @@ const Profile = () => {
 
   const userId = localStorage.getItem('userId');
   const handleDeleteUser = () => {
-    fetch('http://localhost:3000/api/users/' + userId, {
+    fetch('https://comp229-groupproj.onrender.com/api/users/' + userId, {
       method: 'DELETE',
       header: {
         'Content-Type': 'application/json',

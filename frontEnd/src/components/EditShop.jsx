@@ -13,7 +13,7 @@ function EditShop() {
         // Fetch shop details using the shopId from the URL params
         // and set the initial data in the form
         // Replace the following fetch with your actual API call
-        fetch(`http://localhost:3000/api/shops/${shopId}`)
+        fetch(`https://comp229-groupproj.onrender.com/api/shops/${shopId}`)
             .then(response => response.json())
             .then(data => {
                 setShopData({
@@ -36,7 +36,7 @@ function EditShop() {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3000/api/shops/${shopId}`, {
+            const response = await fetch(`https://comp229-groupproj.onrender.com/api/shops/${shopId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
